@@ -96,11 +96,11 @@ sudo certbot --nginx --non-interactive --agree-tos --email $EMAIL -d $DOMAIN
 sudo nginx -t && systemctl reload nginx
 
 # Install WordPress
-cd /var/www/html
-sudo apt -y install unzip 
-sudo wget https://wordpress.org/latest.zip 
-sudo unzip latest.zip  
-sudo rm latest.zip 
+sudo apt -y install unzip && sudo apt -y install zip
+sudo wget -O /var/www/latest.zip https://wordpress.org/latest.zip 
+sudo unzip /var/www/latest.zip -d /var/www/
+sudo rm /var/www/latest.zip
+sudo mv /var/www/wordpress /var/www/html
 
 sudo mv /var/www/html/wp-config-sample.php /var/www/html/wp-config.php
 sudo chmod 640 /var/www/html/wp-config.php 
